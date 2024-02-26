@@ -3,14 +3,14 @@
 #    url: jdbc:mysql://8.134.24.31:3306/juejin?useUnicode=true&characterEncoding=utf8&useSSL=false
 #    #因为稀土掘金的网址是拼音，所以数据库名也是拼音
 #    username: root
-#    password: e93b37189ba456ea
+#    password: noPassword
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #  data:
 #    redis:
 #      host: 8.134.24.31
 #      port: 6379
 #      database: 0
-#      password: uhkHuiguiygyfTDesLfvYFvbIgYUdrASFVYufvycvtydsEas
+#      password: noPassword
 #上面的配置是旧服务器的配置，程序写到一半发现旧服务器快过期了，就换了一个服务器
 
 
@@ -19,7 +19,7 @@ spring:
     url: jdbc:mysql://8.134.219.139:3306/juejin?useUnicode=true&characterEncoding=utf8&useSSL=false
     #因为稀土掘金的网址是拼音，所以数据库名也是拼音
     username: root
-    password: YwypwbTEF5364Yz3
+    password: noPassword
     driver-class-name: com.mysql.cj.jdbc.Driver
   http:
     encoding:
@@ -31,7 +31,7 @@ spring:
       host: 8.134.219.139
       port: 6379
       database: 0
-      password: uhkHuiguiygyfTDesLfvYFvbIgYUdrASFVYufvycvtydsEas
+      password: noPassword
 
 
 jwt:
