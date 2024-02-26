@@ -4,6 +4,7 @@ import com.qsadxs.project.Dao.JwtUtils;
 import com.qsadxs.project.Dao.ResultMap;
 import com.qsadxs.project.Mapper.UserMapper;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.hutool.json.JSONUtil;
 
 @RestController
+@Slf4j
 public class welcome {
 
     @Resource
@@ -25,6 +27,7 @@ public class welcome {
     JSONUtil jsonUtil;
     @RequestMapping("/welcome")
     public ResultMap hello(){
+        log.info("\"/welcome\"请求");
         return ResultMap.success(
                 "If you see this, that means the program worked\n"
                 +"如果你看到这，代表程序运行成功"
