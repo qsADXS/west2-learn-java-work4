@@ -88,6 +88,13 @@ public class TokenFilter extends OncePerRequestFilter {
                             throw new Exception();
                         }
                     }
+                }else{
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    PrintWriter writer = response.getWriter();
+                    writer.write(JSONUtil.toJsonStr(ResultMap.fail("token无效")));
+                    writer.flush();
+                    return;
                 }
             } catch (Exception e) {
                 response.setContentType("application/json;charset=UTF-8");
