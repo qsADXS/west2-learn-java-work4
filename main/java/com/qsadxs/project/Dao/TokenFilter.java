@@ -47,7 +47,14 @@ public class TokenFilter extends OncePerRequestFilter {
                                     FilterChain chain) throws ServletException, IOException {
         log.info("经过filter");
         log.info('\"' + request.getRequestURI()+"\"" + request.getMethod() + "请求");
-        if(ArrayUtils.contains(allowUrl,request.getRequestURI())){
+        boolean isAllowed = false;
+        for (String allowedUrl : allowUrl) {
+            if (matchUrl(request.getRequestURI(), allowedUrl)) {
+                isAllowed = true;
+                break;
+            }
+        }
+        if(isAllowed){
             log.info("无需验证");
         }else {
             try {
@@ -108,6 +115,21 @@ public class TokenFilter extends OncePerRequestFilter {
         }
         log.info("过滤器完成");
         chain.doFilter(request, response);
+    }
+    private boolean matchUrl(String requestURI, String allowedUrl) {
+        // 首先检查是否是完全匹配的情况
+        if (requestURI.equals(allowedUrl)) {
+            return true;
+        }
+
+        // 然后检查是否有通配符的情况
+        if (allowedUrl.endsWith("/**")) {
+            String pattern = allowedUrl.substring(0, allowedUrl.length() - 3);
+            return requestURI.startsWith(pattern);
+        }
+
+        // 如果以上条件都不满足，则不匹配
+        return false;
     }
 }
 
