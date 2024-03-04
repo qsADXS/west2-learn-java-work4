@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class RedisServer {
@@ -24,7 +24,14 @@ public class RedisServer {
     public Long sadd(int userId,int articleId){return redisTemplate.opsForSet().add("juejin-userlike-"+String.valueOf(userId),String.valueOf(articleId));}
     //获取用户点赞的文章
     public Set<Object> smember(int userId){return redisTemplate.opsForSet().members("juejin-userlike-"+String.valueOf(userId));}
-
+    //设置ip访问,过期时间，20秒
+    public void setIp(String key){redisTemplate.opsForValue().set(key,String.valueOf(1),20, TimeUnit.SECONDS);}
+    //增加ip的访问次数
+    public Long ipIncrease(String key){return redisTemplate.opsForValue().increment(key, 1);}
+    //是否有某个key
+    public boolean hasKey(String key){return Boolean.TRUE.equals(redisTemplate.hasKey(key));}
+    //获得过期时间
+    public Long getExpire(String key){return redisTemplate.getExpire(key,TimeUnit.SECONDS);}
 
 
 }

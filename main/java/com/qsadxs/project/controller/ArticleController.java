@@ -94,12 +94,15 @@ public class ArticleController {
     @GetMapping("/user/{userId}")
     public ResultMap getUserArticle(@PathVariable int userId){
         String username = userMapper.findUsernameByUserid(userId);
+        log.info("username="+username);
         List<Article> articles = articleMapper.findArticleWithoutContextByUsername(userId);
+        log.info("文章数为："+articles.size());
         for(Article article : articles){
             article.setLike(redisServer.zscore("juejin-article-like",article.getArticleId()));
             article.setClickCount(redisServer.zscore("juejin-article-clickCount",article.getArticleId()));
             article.setUsername(username);
         }
+        log.info("完成");
         return ResultMap.success(articles);
     }
 

@@ -1,7 +1,7 @@
 package com.qsadxs.project.config;
 
 import com.qsadxs.project.Dao.JwtUtils;
-import com.qsadxs.project.Dao.TokenFilter;
+import com.qsadxs.project.component.TokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

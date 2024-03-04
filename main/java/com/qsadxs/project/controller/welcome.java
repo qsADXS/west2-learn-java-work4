@@ -27,7 +27,7 @@ public class welcome {
     JSONUtil jsonUtil;
     @RequestMapping("/welcome")
     public ResultMap hello(){
-        log.info("\"/welcome\"请求");
+        log.info("控制器执行");
         return ResultMap.success(
                 "If you see this, that means the program worked\n"
                 +"如果你看到这，代表程序运行成功"
