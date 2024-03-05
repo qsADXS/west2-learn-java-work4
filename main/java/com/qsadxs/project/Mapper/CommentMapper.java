@@ -23,6 +23,6 @@ public interface CommentMapper{
     Comment findCommentById(String id);
     @Select("SELECT `id`,`date`,`userId`,`articleId`,`fatherCommentId`,`context` FROM `Comment` WHERE `articleId` = #{articleId} AND `isSubComment` = 0;")
     List<Comment> findCommentByArticleId(int articleId);
-    @Select("SELECT `id`,`date`,`userId`,`articleId`,`fatherCommentId`,`context` FROM `Comment` WHERE `id` = #{commentId} AND `isSubComment` = 0;")
+    @Select("SELECT `id`,`date`,`userId`,`articleId`,`fatherCommentId`,`context` FROM `Comment` WHERE `fatherCommentId` = #{commentId} AND `isSubComment` = 1;")
     List<Comment> findSubCommentByArticleId(String commentId);
 }

@@ -12,6 +12,7 @@ import com.qsadxs.project.pojo.Comment;
 import com.qsadxs.project.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +31,8 @@ public class ArticleController {
     RedisServer redisServer;
     @Autowired
     CommentMapper commentMapper;
+    @Value("${qsadxs.defaultAvatar}")
+    String defaultAvatar;
 
     @PostMapping("/write-article")
     public ResultMap writeArticle(@RequestBody String json){
@@ -83,11 +86,22 @@ public class ArticleController {
         for(int i = 0; i < comments.toArray().length;i++){
             //获得该评论的用户名
             comments.get(i).setUsername(userMapper.findUsernameByUserid(comments.get(i).getUserId()));
+            //获得用户头像
+            String base64Image = userMapper.findAvatarByUserid(comments.get(i).getUserId());
+            if(base64Image == null){
+                base64Image = defaultAvatar;
+            }
+            comments.get(i).setAvatar(base64Image);
             //获得该评论的子评论
             comments.get(i).setSubComments(commentMapper.findSubCommentByArticleId(comments.get(i).getId()));
-            //获得子评论的用户名
+            //获得子评论的用户名和头像
             for(int j = 0; j <  comments.get(i).getSubComments().toArray().length; j++){
                 comments.get(i).getSubComments().get(j).setUsername(userMapper.findUsernameByUserid(comments.get(i).getSubComments().get(j).getUserId()));
+                base64Image = userMapper.findAvatarByUserid(comments.get(i).getSubComments().get(j).getUserId());
+                if(base64Image == null){
+                    base64Image = defaultAvatar;
+                }
+                comments.get(i).getSubComments().get(j).setAvatar(base64Image);
             }
         }
         article.setComments(comments);
