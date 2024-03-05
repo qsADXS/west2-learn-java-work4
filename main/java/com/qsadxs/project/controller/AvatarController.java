@@ -51,6 +51,9 @@ public class AvatarController {
     @GetMapping("/getAvatar/{userId}")
     public ResultMap getBase64(@PathVariable int userId) throws IOException {
         log.info("尝试获取头像");
+        if(userMapper.findByUserid(userId)==null){
+            return ResultMap.fail("找不到该用户");
+        }
         String base64Image = userMapper.findAvatarByUserid(userId);
         if(base64Image == null){
             base64Image = defaultAvatar;

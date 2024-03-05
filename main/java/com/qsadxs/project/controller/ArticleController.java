@@ -38,6 +38,7 @@ public class ArticleController {
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             userDetails = (UserDetails) authentication.getPrincipal();
         } else {
+            log.info("/write-article运行时出错");
             return ResultMap.fail("error");
         }
         Article article = JSONUtil.toBean(json, Article.class);
@@ -55,6 +56,7 @@ public class ArticleController {
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             userDetails = (UserDetails) authentication.getPrincipal();
         } else {
+            log.info("/{articleId}/like运行时出错");
             return ResultMap.fail("error");
         }
         int result = redisServer.sadd(userMapper.findIdByUsername(userDetails.getUsername()),articleId).intValue();
@@ -71,6 +73,10 @@ public class ArticleController {
     @GetMapping("/get/{articleId}")
     public ResultMap getArticle(@PathVariable int articleId){
         Article article = articleMapper.findArticleByArticleId(articleId);
+        if(article == null){
+            log.info("找不到文章:articleId="+articleId);
+            return ResultMap.fail("找不到文章");
+        }
         article.setArticleId(articleId);
         List<Comment>comments=commentMapper.findCommentByArticleId(articleId);
         //这里应该有获取用户名更快的方法，不太懂
@@ -93,7 +99,12 @@ public class ArticleController {
     }
     @GetMapping("/user/{userId}")
     public ResultMap getUserArticle(@PathVariable int userId){
-        String username = userMapper.findUsernameByUserid(userId);
+        User user = userMapper.findByUserid(userId);
+        if(user == null){
+            log.info("找不到用户:userId"+userId);
+            return ResultMap.fail("找不到用户");
+        }
+        String username = user.getUsername();
         log.info("username="+username);
         List<Article> articles = articleMapper.findArticleWithoutContextByUsername(userId);
         log.info("文章数为："+articles.size());
