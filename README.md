@@ -1,7 +1,9 @@
 # west2-learn-java-work4
 西二在线java考核作业4-合作作业稀土掘金
 
-[接口文档](https://apifox.com/apidoc/shared-b3b425f1-a75d-4ae7-9fbd-f6bd93660c7b)
+[接口文档在线链接](https://apifox.com/apidoc/shared-b3b425f1-a75d-4ae7-9fbd-f6bd93660c7b)
+
+[接口文档文件(可能部分未更新)](./接口文档.md)
 
 - 基于`spring-boot-3.2.2`写的程序
 - mysql使用了三个表，用来放用户信息，文章，和评论
