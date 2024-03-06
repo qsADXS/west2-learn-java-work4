@@ -5,7 +5,6 @@
 
 - 基于`spring-boot-3.2.2`写的程序
 - 部署在`8.134.219.139:6666`
-- 完成了基本的内容 ~(应该没有遗漏吧)~
 - mysql使用了三个表，[`User`](#User)、[`Comment`](#Comment)、[`Article`](#Article)
 - 评论的id是通过雪花算法生成，其他是普通的自增id
 - 没有用`mybatis-plus`，因为`mybatis-plus`是后面学的，和`mybatis`一起用的时候有冲突
