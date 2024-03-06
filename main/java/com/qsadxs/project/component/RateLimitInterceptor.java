@@ -2,12 +2,11 @@ package com.qsadxs.project.component;
 
 import cn.hutool.json.JSONUtil;
 import com.qsadxs.project.Dao.RedisServer;
-import com.qsadxs.project.Dao.ResultMap;
+import com.qsadxs.project.pojo.ResultMap;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -33,7 +32,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
             // 如果存在，检查访问次数
             Long count = redisServer.ipIncrease(key);
             log.info("访问次数："+count);
-            if (count != null && count > 5) {
+            if (count != null && count > 20) {
                 log.info("访问次数过多");
                 // 如果访问次数超过限制，返回错误信息
                 response.setContentType("application/json;charset=UTF-8");

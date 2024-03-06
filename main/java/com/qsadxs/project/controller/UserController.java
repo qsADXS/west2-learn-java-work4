@@ -1,10 +1,10 @@
 package com.qsadxs.project.controller;
 
-import com.qsadxs.project.Dao.JwtUtils;
+import com.qsadxs.project.util.JwtUtils;
 import com.qsadxs.project.Dao.RedisServer;
-import com.qsadxs.project.Dao.ResultMap;
-import com.qsadxs.project.Mapper.ArticleMapper;
-import com.qsadxs.project.Mapper.UserMapper;
+import com.qsadxs.project.pojo.ResultMap;
+import com.qsadxs.project.Dao.ArticleMapper;
+import com.qsadxs.project.Dao.UserMapper;
 import com.qsadxs.project.pojo.Article;
 import com.qsadxs.project.pojo.User;
 import jakarta.annotation.Resource;

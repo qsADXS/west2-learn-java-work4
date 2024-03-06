@@ -15,9 +15,10 @@ public class Comment {
     private String date;//评论日期
     private int userId;//评论用户
     private int articleID;//所属文章id
-    private int fatherCommentId;//父评论id（如果为子评论）
+    private String fatherCommentId;//父评论id（如果为子评论）
     private int isSubComment;//是否为子评论，默认false
     private String context;//评论内容
     private String username;//用户名
+    private String avatar;//用户头像
 }
 

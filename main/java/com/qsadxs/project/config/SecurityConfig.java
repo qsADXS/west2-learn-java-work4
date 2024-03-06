@@ -1,8 +1,7 @@
 package com.qsadxs.project.config;
 
 import com.qsadxs.project.component.TokenFilter;
-import com.qsadxs.project.Dao.UserDetailsServiceImpl;
-import org.apache.ibatis.plugin.InterceptorChain;
+import com.qsadxs.project.bo.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +12,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.HandlerMapping;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 
 @EnableWebSecurity
 @Configuration

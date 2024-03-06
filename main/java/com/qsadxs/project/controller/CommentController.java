@@ -2,11 +2,11 @@ package com.qsadxs.project.controller;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
-import com.qsadxs.project.Dao.ResultMap;
-import com.qsadxs.project.Dao.SnowflakeIdGenerator;
-import com.qsadxs.project.Mapper.ArticleMapper;
-import com.qsadxs.project.Mapper.CommentMapper;
-import com.qsadxs.project.Mapper.UserMapper;
+import com.qsadxs.project.pojo.ResultMap;
+import com.qsadxs.project.util.SnowflakeIdGenerator;
+import com.qsadxs.project.Dao.ArticleMapper;
+import com.qsadxs.project.Dao.CommentMapper;
+import com.qsadxs.project.Dao.UserMapper;
 import com.qsadxs.project.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

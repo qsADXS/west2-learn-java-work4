@@ -1,8 +1,8 @@
 package com.qsadxs.project.controller;
 
-import com.qsadxs.project.Dao.JwtUtils;
-import com.qsadxs.project.Dao.ResultMap;
-import com.qsadxs.project.Mapper.UserMapper;
+import com.qsadxs.project.util.JwtUtils;
+import com.qsadxs.project.pojo.ResultMap;
+import com.qsadxs.project.Dao.UserMapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
