@@ -15,6 +15,7 @@
 - 对于文章的点击次数，有改进空间，对每个用户/IP的每次点击设置一个过期时间，点击的时候放进`redis`，过期前不会再增加这个用户/ip对这篇文章的点击次数
 - 然后token的设置，也可以放在`redis`中 ~(但是我没放)~
 - 对于头像的存储，原本是想把文件保存在服务器上的，但是不知道为什么显示文件不存在(在本地、直接在服务器运行都是，[controller.AvatarController](.\main\java\com\qsadxs\project\controller\AvatarController.java)中的注释部分有保存为文件的代码)，最后选择转成`base64`丢`mysql`里面
+- ~密码是明文放在数据库的~  ~(都什么年代了，还有人明文放密码)~
 - [这是测试接口的截图](./test.md)
 - tree
 
