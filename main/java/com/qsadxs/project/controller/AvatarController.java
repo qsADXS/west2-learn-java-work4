@@ -1,4 +1,5 @@
 package com.qsadxs.project.controller;
+import cn.hutool.core.io.FileTypeUtil;
 import com.qsadxs.project.pojo.ResultMap;
 import com.qsadxs.project.Dao.UserMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Base64;
+import java.util.Objects;
 
 @RestController
 @Slf4j
@@ -39,7 +43,16 @@ public class AvatarController {
         } else {
             return ResultMap.fail("error");
         }
-        File file = new File(System.getProperty("java.io.tmpdir") + File.separator + newAvatar.getOriginalFilename());
+        String originalFilename = newAvatar.getOriginalFilename();
+        Path tempFile = Files.createTempFile("", originalFilename);
+        newAvatar.transferTo(tempFile);
+        File file = tempFile.toFile();
+        String fileType = FileTypeUtil.getType(file);
+        log.info(fileType);
+        if(!Objects.equals(fileType, "png")||!Objects.equals(fileType, "jpg")){
+            log.info("错误文件");
+            return ResultMap.fail("错误文件");
+        }
         newAvatar.transferTo(file);
         byte[] bytes = FileUtils.readFileToByteArray(file);
         String base64 = new String(Base64.getEncoder().encode(bytes), StandardCharsets.UTF_8);

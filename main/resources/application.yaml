@@ -35,7 +35,7 @@ spring:
 
 
 jwt:
-  secret: ashduiahdwhadgreaIUEHiuhiHHAWd8hilhOAWDjho8WAUYHDo8h3hukaHDIWAHihDAW78928ADyw8h289AHD892h98AHD8929hdfsAWHD892
+  secret: ？？偷看我？
   expiration: 300000000000  # 令牌过期时间，单位是毫秒
   tokenHeader: Authorization
   tokenHead: 'Bearer '

@@ -8,6 +8,7 @@ import com.qsadxs.project.Dao.UserMapper;
 import com.qsadxs.project.pojo.Article;
 import com.qsadxs.project.pojo.User;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
+@Slf4j
 @RequestMapping("/user")
 public class UserController {
     @Resource
@@ -35,6 +37,10 @@ public class UserController {
     //登录
     @PostMapping("/login/")
     public ResultMap loginUser(@RequestParam String username,@RequestParam String password) {
+        if(username ==null||password==null){
+            log.info("用户名或密码为空");
+            return ResultMap.fail("用户名或密码为空");
+        }
         if(Objects.equals(password, userMapper.findPasswordByUsername(username))){
             Map<String, String> tokenMap = new HashMap<>();
             String token = jwtUtils.generateToken(username);
@@ -47,6 +53,10 @@ public class UserController {
     }
     @PostMapping("/register/")
     public ResultMap register(@RequestParam String username,@RequestParam String password){
+        if(username ==null||password==null){
+            log.info("用户名或密码为空");
+            return ResultMap.fail("用户名或密码为空");
+        }
         if(userMapper.findByUsername(username) != null){
             return ResultMap.fail("用户名已存在");
         }else{
@@ -56,6 +66,10 @@ public class UserController {
     }
     @PostMapping("/change-username")
     public ResultMap changeUsername(@RequestParam String newUsername){
+        if(newUsername == null){
+            log.info("新用户名为空");
+            return ResultMap.fail("新用户名为空");
+        }
         UserDetails userDetails = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
@@ -74,6 +88,10 @@ public class UserController {
     }
     @PostMapping("/change-password")
     public ResultMap changePassword(@RequestParam String newPassword){
+        if(newPassword ==null){
+            log.info("新密码为空");
+            return ResultMap.fail("新密码为空");
+        }
         UserDetails userDetails = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
