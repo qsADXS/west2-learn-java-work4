@@ -16,6 +16,8 @@
 - 然后token的设置，也可以放在`redis`中 ~(但是我没放)~
 - 对于头像的存储，原本是想把文件保存在服务器上的，但是不知道为什么显示文件不存在(在本地、直接在服务器运行都是，[controller.AvatarController](.\main\java\com\qsadxs\project\controller\AvatarController.java)中的注释部分有保存为文件的代码)，最后选择转成`base64`丢`mysql`里面
 - ~密码是明文放在数据库的~  ~(都什么年代了，还有人明文放密码)~
+  - 因为刚开始写的时候没有考虑过安全性，在数据库中放加密密码，然后把前端传回来的数据加密再和数据库比对
+
 - [这是测试接口的截图](./test.md)
 - tree
 
