@@ -15,7 +15,7 @@ public class MyExceptionHandler {
     @ExceptionHandler(value =Exception.class)
     @ResponseBody
     public String exceptionHandler(Exception e){
-        log.info("全局异常");
+        log.info("全局异常:"+e.getMessage());
         return JSONUtil.toJsonStr(ResultMap.fail("全局异常："+e.getMessage()));
     }
 }

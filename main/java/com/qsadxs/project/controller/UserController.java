@@ -58,7 +58,7 @@ public class UserController {
     }
     @PostMapping("/register/")
     public ResultMap register(@RequestParam String username,@RequestParam String password){
-        if(username ==null||password==null){
+        if(username == null||password== null|| username.equals("")||password.equals("")){
             log.info("用户名或密码为空");
             return ResultMap.fail("用户名或密码为空");
         }

@@ -11,7 +11,7 @@ public class ProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
 		log.info("开启完成");
-		log.info("版本:"+"v1.0.7");
+		log.info("版本:"+"v1.0.8");
 	}
 
 }
