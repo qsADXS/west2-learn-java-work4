@@ -1,7 +1,7 @@
 # west2-learn-java-work4
 西二在线java考核作业4-[合作作业稀土掘金](https://github.com/west2-online/learn-java/blob/main/docs/4-%E5%90%88%E4%BD%9C%E4%BD%9C%E4%B8%9A.md)
 
-[接口文档在线链接](https://apifox.com/apidoc/shared-b3b425f1-a75d-4ae7-9fbd-f6bd93660c7b)
+[接口文档在线链接](https://apifox.com/apidoc/shared-b3b425f1-a75d-4ae7-9fbd-f6bd93660c7b)(正式环境)
 
 - 基于`spring-boot-3.2.2`写的程序
 - 部署在`8.134.219.139:6666`
