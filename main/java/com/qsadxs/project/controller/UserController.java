@@ -1,5 +1,6 @@
 package com.qsadxs.project.controller;
 
+import cn.hutool.json.JSONUtil;
 import com.qsadxs.project.util.JwtUtils;
 import com.qsadxs.project.Dao.RedisServer;
 import com.qsadxs.project.pojo.ResultMap;
@@ -42,11 +43,13 @@ public class UserController {
             return ResultMap.fail("用户名或密码为空");
         }
         if(Objects.equals(password, userMapper.findPasswordByUsername(username))){
-            Map<String, String> tokenMap = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             String token = jwtUtils.generateToken(username);
-            tokenMap.put("token",token);
-            tokenMap.put("tokenHead",tokenHead);
-            return ResultMap.success(tokenMap);
+            int userId = userMapper.findIdByUsername(username);
+            map.put("token",token);
+            map.put("tokenHead",tokenHead);
+            map.put("userId",userId);
+            return ResultMap.success(map);
         }else{
             return ResultMap.fail("用户名或密码错误");
         }

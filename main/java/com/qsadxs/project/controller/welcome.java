@@ -29,8 +29,7 @@ public class welcome {
     public ResultMap hello(){
         log.info("控制器执行");
         return ResultMap.success(
-                "If you see this, that means the program worked\n"
-                +"如果你看到这，代表程序运行成功"
+                "如果你看到这，代表程序运行成功"
         );
     }
     //测试，用来获取所有用户信息，这就不删了吧

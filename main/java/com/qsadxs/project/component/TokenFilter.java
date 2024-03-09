@@ -48,10 +48,12 @@ public class TokenFilter extends OncePerRequestFilter {
         log.info("经过filter");
         log.info('\"' + request.getRequestURI()+"\"" + request.getMethod() + "请求");
         boolean isAllowed = false;
-        for (String allowedUrl : allowUrl) {
-            if (matchUrl(request.getRequestURI(), allowedUrl)) {
-                isAllowed = true;
-                break;
+        if(request.getHeader(this.tokenHeader)==null){
+            for (String allowedUrl : allowUrl) {
+                if (matchUrl(request.getRequestURI(), allowedUrl)) {
+                    isAllowed = true;
+                    break;
+                }
             }
         }
         if(isAllowed){

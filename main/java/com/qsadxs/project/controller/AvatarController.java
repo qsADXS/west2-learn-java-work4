@@ -49,7 +49,7 @@ public class AvatarController {
         File file = tempFile.toFile();
         String fileType = FileTypeUtil.getType(file);
         log.info(fileType);
-        if(!Objects.equals(fileType, "png")||!Objects.equals(fileType, "jpg")){
+        if(!(Objects.equals(fileType, "png")||Objects.equals(fileType, "jpg"))){
             log.info("错误文件");
             return ResultMap.fail("错误文件");
         }
