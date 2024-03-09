@@ -35,6 +35,8 @@ public class UserController {
     RedisServer redisServer;
     @Autowired
     ArticleMapper articleMapper;
+    @Value("${qsadxs.defaultAvatar}")
+    String defaultAvatar;
     //登录
     @PostMapping("/login/")
     public ResultMap loginUser(@RequestParam String username,@RequestParam String password) {
@@ -130,7 +132,19 @@ public class UserController {
         }
         return ResultMap.success(articles);
     }
-
-
-
+    @GetMapping("/getUser/{userId}")
+    public ResultMap getUser(@PathVariable int userId){
+        String username = userMapper.findUsernameByUserid(userId);
+        if(username == null){
+            return ResultMap.fail("错误用户id");
+        }
+        String avatar = userMapper.findAvatarByUserid(userId);
+        if(avatar == null){
+            avatar = defaultAvatar;
+        }
+        Map<String,Object>map = new HashMap<>();
+        map.put("username",username);
+        map.put("avatar",avatar);
+        return ResultMap.success(map);
+    }
 }

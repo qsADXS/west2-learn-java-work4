@@ -32,10 +32,4 @@ public class welcome {
                 "如果你看到这，代表程序运行成功"
         );
     }
-    //测试，用来获取所有用户信息，这就不删了吧
-    @RequestMapping("/alluser")
-    public String alluser() {
-        return jsonUtil.toJsonPrettyStr(userMapper.findAll());
-
-    }
 }
