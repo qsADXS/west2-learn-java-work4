@@ -25,7 +25,7 @@ public class RedisServer {
     //获取用户点赞的文章
     public Set<Object> smember(int userId){return redisTemplate.opsForSet().members("juejin-userlike-"+String.valueOf(userId));}
     //设置ip访问,过期时间，20秒
-    public void setIp(String key){redisTemplate.opsForValue().set(key,String.valueOf(1),20, TimeUnit.SECONDS);}
+    public void setIp(String key){redisTemplate.opsForValue().set(key,String.valueOf(1),10, TimeUnit.SECONDS);}
     //增加ip的访问次数
     public Long ipIncrease(String key){return redisTemplate.opsForValue().increment(key, 1);}
     //是否有某个key
