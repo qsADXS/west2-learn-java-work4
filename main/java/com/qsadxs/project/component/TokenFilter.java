@@ -1,6 +1,5 @@
 package com.qsadxs.project.component;
 
-
 import cn.hutool.json.JSONUtil;
 import com.qsadxs.project.util.JwtUtils;
 import com.qsadxs.project.pojo.ResultMap;
@@ -111,7 +110,7 @@ public class TokenFilter extends OncePerRequestFilter {
                 PrintWriter writer = response.getWriter();
                 writer.write(JSONUtil.toJsonStr(ResultMap.fail(e.getMessage())));
                 writer.flush();
-                log.info("奇怪的问题+1");
+                log.info(e.getMessage());
                 return;
             }
         }

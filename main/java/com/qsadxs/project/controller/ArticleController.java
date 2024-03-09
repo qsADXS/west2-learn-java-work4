@@ -48,8 +48,8 @@ public class ArticleController {
         User user = userMapper.findByUsername(userDetails.getUsername());
         articleMapper.insertArticle(user.getUserId(), article.getTitle(), DateUtil.today(), article.getContext());
         int articleId = articleMapper.findUserArticleIdByUserId(user.getUserId());
-        redisServer.zadd("clickCount",articleId);
-        redisServer.zadd("like",articleId);
+        redisServer.zadd("juejin-article-clickCount",articleId);
+        redisServer.zadd("juejin-article-like",articleId);
         return ResultMap.success(null);
     }
     @PostMapping("/{articleId}/like")
