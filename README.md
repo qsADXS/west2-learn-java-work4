@@ -1,10 +1,10 @@
 # west2-learn-java-work4
 西二在线java考核作业4-[合作作业稀土掘金](https://github.com/west2-online/learn-java/blob/main/docs/4-%E5%90%88%E4%BD%9C%E4%BD%9C%E4%B8%9A.md)
 
-[接口文档在线链接](https://apifox.com/apidoc/shared-b3b425f1-a75d-4ae7-9fbd-f6bd93660c7b)(正式环境)
+[接口文档在线链接](https://apifox.com/apidoc/shared-b3b425f1-a75d-4ae7-9fbd-f6bd93660c7b)
 
 - 基于`spring-boot-3.2.2`写的程序
-- 部署在`8.134.219.139:6666`
+- `部署在`8.134.219.139:6666`(已关闭)
 - mysql使用了三个表，[`User`](#User)、[`Comment`](#Comment)、[`Article`](#Article)
 - 评论的id是通过雪花算法生成，其他是普通的自增id
 - 没有用`mybatis-plus`，因为`mybatis-plus`是后面学的，和`mybatis`一起用的时候有冲突
